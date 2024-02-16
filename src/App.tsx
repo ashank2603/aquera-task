@@ -1,9 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import ProfilePage from "./pages/ProfilePage"
+import HomePage from "./pages/HomePage"
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl text-red-500">Aquera Task</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/:profileId" element={<ProfilePage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
