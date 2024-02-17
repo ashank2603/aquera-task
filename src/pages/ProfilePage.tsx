@@ -1,5 +1,5 @@
 import ProfileCard from "@/components/ProfileCard"
-import RepoList from "@/components/RepoList"
+import RepoCard from "@/components/RepoCard"
 import { useToast } from "@/components/ui/use-toast"
 import { GitHubRepo, User } from "@/types"
 import axios, { AxiosError } from "axios"
@@ -63,18 +63,24 @@ const ProfilePage = () => {
   }, [profileId])
 
   return (
-    <div className="px-28 py-10">
+    <div className="px-5 md:px-10 py-10">
       {userInfo ? (
-        <div className="flex flex-col md:flex-row">
-          <div>
+        <div className="flex flex-col md:flex-row gap-10">
+          <div className="w-full md:w-[32%]">
             <ProfileCard 
               user={userInfo}
-              numOfRepos={repos.length}
             />
           </div>
-          <div>
+          <div className="w-full lg:w-[80%]">
             {repos.length > 0 ? (
-              <RepoList />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {repos.map((repo) => (
+                  <RepoCard 
+                    key={repo.id}
+                    repo={repo}
+                  />
+                ))}
+              </div>
             ) : (
               <div>
                 <h1>No repositories to display</h1>
