@@ -47,7 +47,7 @@ const HomePage = () => {
     <div className="min-h-screen flex flex-col py-56 items-center">
         <div className="space-y-6 bg-zinc-200 p-10 rounded-3xl">
             <div className="space-y-2">
-                <h1 className="text-4xl font-semibold">GitHub Profile Viewer</h1>
+                <h1 className="text-2xl md:text-4xl font-semibold">GitHub Profile Viewer</h1>
                 <p className="text-sm text-center text-zinc-500">Enter github username to view their profile</p>    
             </div>
             <div className="flex gap-2">
