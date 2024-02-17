@@ -61,7 +61,7 @@ const Header = () => {
                 <div className="relative">
                     <Input 
                         placeholder="Search GitHub Username..."
-                        className="w-[250px] md:w-[300px]"
+                        className="w-[290px] md:w-[300px]"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />

@@ -1,6 +1,7 @@
 import ProfileCard from "@/components/ProfileCard";
 import RepoCard from "@/components/RepoCard";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { GitHubRepo, User } from "@/types";
@@ -73,7 +74,6 @@ const ProfilePage = () => {
     setCurrentPage(newPage);
   };
 
-  console.log(totalPages);
   useEffect(() => {
     getUserInfo();
   }, [profileId, currentPage]);
@@ -83,16 +83,14 @@ const ProfilePage = () => {
       {userInfo ? (
         <div className="flex flex-col md:flex-row gap-10">
           <div className="w-full md:w-[32%]">
-            <ProfileCard user={userInfo} />
+            <ProfileCard user={userInfo} loading={isLoading} />
           </div>
           <div className="w-full lg:w-[80%]">
             {repos.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                   {isLoading ? ([...Array(3)].map((_, index) => (
-                    <div key={index}>
-                      <h1>Loading</h1>
-                    </div>
+                    <Skeleton key={index} className=" w-[370px] lg:w-[350px] h-[180px] rounded-2xl bg-zinc-200" />
                   ))) : (
                     <>
                       {repos.map((repo) => (
