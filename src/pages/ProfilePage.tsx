@@ -43,13 +43,14 @@ const ProfilePage = () => {
           }
         );
         setRepos(repoRes.data);
-        if (userInfo) {
-          setTotalPages(Math.ceil(userInfo.public_repos / 10));
-        }
       } catch (error) {
         toast({
           description: "Error fetching repositories",
         });
+      } finally {
+        if (res.data) {
+          setTotalPages(Math.ceil(res.data.public_repos / 10));
+        }
       }
     } catch (error) {
       if (error instanceof AxiosError) {
