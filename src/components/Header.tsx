@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { useState } from "react"
@@ -25,6 +25,7 @@ const Header = () => {
                 Authorization: `Bearer ${api_key}`
             }
         })
+        setUsername("")
         navigate(`/${username}`)
     } catch(error) {
         if (error instanceof AxiosError) {
@@ -49,7 +50,9 @@ const Header = () => {
     <div className="flex justify-between px-5 md:px-10 py-5">
         {profileId && (
             <div className="hidden md:block ">
-                <h1 className="text-2xl font-semibold">GitHub Profile Viewer</h1>
+                <Link to="/">
+                    <h1 className="text-2xl font-semibold">GitHub Profile Viewer</h1>
+                </Link>
                 {/* <h1 className="md:hidden text-2xl font-semibold">GPV</h1> */}
             </div>
         )}

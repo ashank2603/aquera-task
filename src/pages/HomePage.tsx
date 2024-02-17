@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
 import axios, { AxiosError } from "axios"
-import { Loader2, Search } from "lucide-react"
+import { Loader2, Search, XCircle } from "lucide-react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -51,11 +51,20 @@ const HomePage = () => {
                 <p className="text-sm text-center text-zinc-500">Enter github username to view their profile</p>    
             </div>
             <div className="flex gap-2">
-                <Input 
-                    placeholder="GitHub Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+                <div className="w-full relative">
+                    <Input 
+                        placeholder="GitHub Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    {username !== "" && (
+                        <XCircle 
+                            className="absolute right-2 top-2.5 cursor-pointer fill-slate-400 text-white" 
+                            size={20} 
+                            onClick={() => setUsername("")}
+                        />
+                    )}
+                </div>
                 {isLoading ? (
                     <Loader2 className="mt-2 animate-spin" />
                 ) : (
