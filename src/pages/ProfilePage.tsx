@@ -1,6 +1,7 @@
 import ProfileCard from "@/components/ProfileCard"
 import RepoList from "@/components/RepoList"
 import { useToast } from "@/components/ui/use-toast"
+import { GitHubRepo, User } from "@/types"
 import axios, { AxiosError } from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
@@ -8,8 +9,8 @@ import { useParams } from "react-router-dom"
 const ProfilePage = () => {
   const { profileId } = useParams()
 
-  const [userInfo, setUserInfo] = useState(null)
-  const [repos, setRepos] = useState([])
+  const [userInfo, setUserInfo] = useState<User | null>(null)
+  const [repos, setRepos] = useState<GitHubRepo[]>([])
 
   const { toast } = useToast()
 
@@ -62,11 +63,14 @@ const ProfilePage = () => {
   }, [profileId])
 
   return (
-    <div className="px-40 py-10">
+    <div className="px-28 py-10">
       {userInfo ? (
         <div className="flex flex-col md:flex-row">
           <div>
-            <ProfileCard />
+            <ProfileCard 
+              user={userInfo}
+              numOfRepos={repos.length}
+            />
           </div>
           <div>
             {repos.length > 0 ? (
